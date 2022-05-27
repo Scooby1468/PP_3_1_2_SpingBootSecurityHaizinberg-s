@@ -17,15 +17,20 @@ import org.springframework.web.filter.CharacterEncodingFilter;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserDetailsServiceImpl userDetailsService;
+    private UserDetailsServiceImpl userDetailsServiceImpl;
 
     @Autowired
     private SuccessUserHandler successUserHandler;
 
 
-    @Autowired
-    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService); // конфигурация для прохождения аутентификации
+//    @Autowired
+//    public void configureGlobalSecurity(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsServiceImpl); // конфигурация для прохождения аутентификации
+//    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsServiceImpl);
     }
 
     @Override

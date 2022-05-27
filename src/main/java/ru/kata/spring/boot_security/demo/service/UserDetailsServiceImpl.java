@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.service;
 
+import org.springframework.transaction.annotation.Transactional;
 import ru.kata.spring.boot_security.demo.dao.UserDao;
 
 import ru.kata.spring.boot_security.demo.model.MyUser;
@@ -25,6 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         this.userDao = userDao;
     }
 
+    @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         MyUser myUser = userDao.findByName(username);
